@@ -67,6 +67,7 @@
     "windows": [
       {
         "fullscreen": false,
+        "minWidth": 660,
         "height": 600,
         "resizable": true,
         "title": "PaperClient",
