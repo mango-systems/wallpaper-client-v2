@@ -71,7 +71,8 @@
         "resizable": true,
         "title": "PaperClient",
         "width": 800,
-        "decorations": false
+        "decorations": false,
+        "transparent": true
       }
     ]
   }
