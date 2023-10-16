@@ -11,10 +11,19 @@ export default {
         AdwBackgroundPrimary: '#ffffff',
         AdwBackgroundSidebar: '#fafafa',
         AdwBorder: '#e4e4e4',
-        AdwBackground: '#ffffff'
+        AdwBackground: '#ffffff',
+        AdwTextPrimary: 'black',
+        AdwBackgroundPrimaryDark: '#0b0b11',
+        AdwBackgroundSidebarDark: '#242424',
+        AdwBorderDark: '#28292e',
+        AdwBackgroundDark: '#0b0b11',
+        AdwTextPrimaryDark: '#b8b8b9'
       },
       borderRadius: {
         'AdwWindow': '8px'
+      },
+      height: {
+        'AdwTopBar' : '40px'
       }
     },
   },
