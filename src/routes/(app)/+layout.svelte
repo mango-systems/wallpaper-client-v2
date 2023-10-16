@@ -14,7 +14,7 @@
 
 <div class="w-full h-full flex flex-row">
     <div class="hidden md:block">
-        <div id="sidebar" class="h-full dark:bg-AdwBackgroundSidebarDark bg-AdwBackgroundSidebar w-[25%] md:max-w-[255px] lg:max-w-[270px] rounded-l-AdwWindow min-w-[240px] flex-grow">
+        <div id="sidebar" class="h-full dark:bg-AdwBackgroundSidebarDark bg-AdwBackgroundSidebar w-[25%] md:max-w-[255px] lg:max-w-[270px] rounded-l-AdwWindow min-w-[240px] flex-grow px-3">
             <div id="topbar" class="w-full h-AdwTopBar"></div>
             <h1 class="text-lg text-AdwTextPrimary dark:text-AdwTextPrimaryDark">{appName}</h1>
             <!-- named slot: sidebar -->
