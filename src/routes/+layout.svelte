@@ -4,11 +4,11 @@
 
 <div class="w-screen h-screen">
   <div class="w-full h-full bg-AdwBackgroundPrimary dark:bg-AdwBackgroundPrimaryDark rounded-AdwWindow  ">
-    <div id="grab-area" data-tauri-drag-region class="h-10  absolute top-0 w-screen">
+    <!-- <div id="grab-area" data-tauri-drag-region class="h-10  absolute top-0 w-screen"> -->
       <!-- grab area (debug in root layout) -->
-    </div>
+    <!-- </div> -->
 
-    <div class="dark:border-[#28292ec4] border-[#28292e5b] border-2 w-full h-full rounded-AdwWindow">
+    <div class="dark:border-[#28292ec4] border-[#28292e5b] border-[1.5px] w-full h-full rounded-AdwWindow">
       <slot />
     </div>
   </div>
