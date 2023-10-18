@@ -18,6 +18,8 @@
 			isOpenWindow: false
 		});
 	}
+
+	//  on:click={downloadImage("hello")}
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -32,7 +34,7 @@
 		<div class="flex flex-row w-full dark:border-[#28292ec4] border-[#28292e5b] border-b-[1.5px] items-center">
 			<div class="flex flex-row w-full justify-start gap-1 py-2">
 				<div class="flex items-center pl-2">
-					<button class="bg-violet-500 h-full rounded py-[6px] px-4 text-white font-bold" on:click={downloadImage("hello")}
+					<button class="bg-violet-500 h-full rounded py-[6px] px-4 text-white font-bold"
 						
 					>Set background</button>
 				</div>

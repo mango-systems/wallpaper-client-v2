@@ -1,13 +1,13 @@
 [
     {
-      "title": "Server 1",
+      "title": "MSM Github Wallpapers",
       "location_url": "https://raw.githubusercontent.com/msm-linux/msm-wallpaper-index-source/main/index.json",
       "description": "This is the description for Event 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "mode": "v1"
     },
     {
-      "title": "Server 1 copy",
-      "location_url": "https://raw.githubusercontent.com/msm-linux/msm-wallpaper-index-source/main/index.json",
+      "title": "Catpuccin Cassete Wallpapers",
+      "location_url": "https://raw.githubusercontent.com/MSM74588/msm-catpuccin-cassete-wallpaper-source/main/index.json",
       "mode": "v1"
     },
     {
