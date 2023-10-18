@@ -3,7 +3,9 @@ import { writable } from 'svelte/store';
 
 const source = writable(
     {
-        url: "example.com",
+        server_name: "",
+        server_info: "",
+        location_url: "",
         mode: "v1"
     }
 )

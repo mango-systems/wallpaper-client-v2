@@ -1,3 +1,3 @@
-<div class="w-full px-[10%]">
+<div class="w-full px-[10%] h-full ">
     <slot />
 </div>

@@ -11,6 +11,6 @@
 
 </script>
 <ContentContainer>
-    <h1>{urlStore.url}</h1>
+    <h1>{urlStore.location_url}</h1>
     <h1>Version TWO</h1>
 </ContentContainer>

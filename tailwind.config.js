@@ -5,6 +5,8 @@ export default {
     screens: {
       'sm': '330px',
       'md': '570px',
+      'lg': '1170px',
+      'xl': '1600px'
     },
     fontFamily: {
       'sans': '-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif',

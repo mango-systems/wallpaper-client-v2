@@ -48,12 +48,32 @@
 	/**
 	 * @type {{ url: any; }}
 	 */
-	 let urlStore;
+	let urlStore;
 	SourceStore.subscribe((data) => {
 		urlStore = data;
 	});
-	// ######### IMPLEMENT STORE UPDATE ###################33
+	// ######### IMPLEMENT STORE UPDATE ###################
 
+	function setLocationUrl(event) {
+		/**
+		 * @type {any}
+		 */
+		let sourceUrl;
+		let serverTitle
+
+		const sourceButton = event.target;
+		sourceUrl = event.currentTarget.getAttribute('data-source-url');
+		serverTitle = event.currentTarget.getAttribute('data-server-name');
+		console.log(sourceUrl);
+		// SourceStore.update((currentValue) => {
+		// 	return { ...currentValue, location_url: sourceUrl };
+		// });
+		// @ts-ignore
+		SourceStore.set({
+			location_url: sourceUrl,
+			server_name: serverTitle
+		});
+	}
 </script>
 
 <div class="w-full h-full flex flex-row">
@@ -72,7 +92,9 @@
 				</IconButton>
 			</div>
 			<div class="px-3 pb-3">
-				<h1 class="text-lg  leading-2 text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans font-bold">
+				<h1
+					class="text-lg leading-2 text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans font-bold"
+				>
 					{appName}
 				</h1>
 				<p class="text-base">{displayDescription}</p>
@@ -85,13 +107,19 @@
 					{:then sources}
 						{#each sources as source}
 							<li>
-								<a href="/{source.mode}">
-									<button class="w-full">
+								<button
+									class="w-full"
+									data-source-url={source.location_url}
+									data-server-name={source.title}
+									data-server-info={source.description}
+									on:click={setLocationUrl}
+								>
+									<a href="/{source.mode}">
 										<div class="flex items-center hover:bg-[#cccccc] px-3 py-1 rounded-lg">
 											{source.title}
 										</div>
-									</button>
-								</a>
+									</a>
+								</button>
 							</li>
 						{/each}
 					{:catch error}
@@ -104,39 +132,40 @@
 	<div id="seperator" class="h-full py-1">
 		<div class="h-full w-[2px] bg-AdwBorder dark:bg-AdwBorderDark" />
 	</div>
-	<div id="main-area" class="w-full bg-AdwBackground dark:bg-AdwBackgroundDark rounded-r-AdwWindow flex flex-col">
+	<div
+		id="main-area"
+		class="w-full bg-AdwBackground dark:bg-AdwBackgroundDark rounded-r-AdwWindow flex flex-col"
+	>
+		<div id="topbar" class="w-full flex flex-row flex-grow-0 py-2">
+			<div class="flex-grow" data-tauri-drag-region />
+			<div id="windowButtons" class="flex flex-row gap-3 items-center pr-2" data-tauri-drag-region>
+				<WindowButton
+					windowButtonEvent={() => {
+						appWindow.minimize();
+					}}
+				>
+					<WindowMinimizeSymbolic />
+				</WindowButton>
+				<WindowButton
+					windowButtonEvent={() => {
+						appWindow.toggleMaximize();
+					}}
+				>
+					<WindowMaximizeSymbolic />
+				</WindowButton>
+				<WindowButton
+					windowButtonEvent={() => {
+						appWindow.close();
+					}}
+				>
+					<WindowCloseSymbolic />
+				</WindowButton>
+			</div>
+		</div>
 
-			<div id="topbar" class="w-full flex flex-row flex-grow-0 py-2">
-				<div class="flex-grow" data-tauri-drag-region />
-				<div id="windowButtons" class="flex flex-row gap-3 items-center pr-2" data-tauri-drag-region>
-					<WindowButton
-						windowButtonEvent={() => {
-							appWindow.minimize();
-						}}
-					>
-						<WindowMinimizeSymbolic />
-					</WindowButton>
-					<WindowButton
-						windowButtonEvent={() => {
-							appWindow.toggleMaximize();
-						}}
-					>
-						<WindowMaximizeSymbolic />
-					</WindowButton>
-					<WindowButton
-						windowButtonEvent={() => {
-							appWindow.close();
-						}}
-					>
-						<WindowCloseSymbolic />
-					</WindowButton>
-				</div>
-			</div>
-	
-			<!-- named slot: mainarea -->
-			<div class="w-full max-h-full overflow-y-auto">
-				<slot />
-			</div>
-		
+		<!-- named slot: mainarea -->
+		<div class="w-full overflow-y-auto h-full">
+			<slot />
+		</div>
 	</div>
 </div>
