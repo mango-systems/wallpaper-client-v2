@@ -104,8 +104,8 @@
 	<div id="seperator" class="h-full py-1">
 		<div class="h-full w-[2px] bg-AdwBorder dark:bg-AdwBorderDark" />
 	</div>
-	<div id="main-area" class="w-full bg-AdwBackground dark:bg-AdwBackgroundDark rounded-r-AdwWindow">
-		<div class="flex flex-col">
+	<div id="main-area" class="w-full bg-AdwBackground dark:bg-AdwBackgroundDark rounded-r-AdwWindow flex flex-col">
+
 			<div id="topbar" class="w-full flex flex-row flex-grow-0 py-2">
 				<div class="flex-grow" data-tauri-drag-region />
 				<div id="windowButtons" class="flex flex-row gap-3 items-center pr-2" data-tauri-drag-region>
@@ -134,9 +134,9 @@
 			</div>
 	
 			<!-- named slot: mainarea -->
-			<div class="w-full max-h-full overflow-hidden bg-red-300">
+			<div class="w-full max-h-full overflow-y-auto bg-red-300">
 				<slot />
 			</div>
-		</div>
+		
 	</div>
 </div>
