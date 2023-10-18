@@ -13,8 +13,18 @@
 	import { readTextFile } from '@tauri-apps/api/fs';
 
 	import SourceStore from '$lib/stores/source';
+	import PreviewWindow from '$lib/components/previewWindow.svelte';
 	// https://svelte.dev/examples/onmount
 	// https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/named-colors.html
+
+	import previewWindowStore from '$lib/stores/previewWindow';
+
+	let previewWindow;
+	previewWindowStore.subscribe((data) => {
+		previewWindow = data;
+	});
+
+	// #########################
 
 	/** @type {string} */
 	let appName;
@@ -74,10 +84,14 @@
 		SourceStore.set({
 			location_url: sourceUrl,
 			server_name: serverTitle,
-			server_info: serverInfo,
+			server_info: serverInfo
 		});
 	}
 </script>
+
+{#if previewWindow.isOpenWindow}
+	<PreviewWindow />
+{/if}
 
 <div class="w-full h-full flex flex-row">
 	<div class="hidden md:block">

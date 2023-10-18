@@ -30,7 +30,13 @@ export default {
         'AdwWindow': '8px'
       },
       height: {
-        'AdwTopBar' : '45px'
+        'AdwTopBar': '45px',
+        'PreviewHeightSmall': '560px',
+        'PreviewHeightLarge': '855px'
+      },
+      width: {
+        'PreviewWidthSmall': '380px',
+        'PreviewWidthLarger': '800px',
       }
     },
   },

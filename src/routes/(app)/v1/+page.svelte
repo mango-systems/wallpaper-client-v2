@@ -1,7 +1,10 @@
 <script>
+	// import { WAYLAND_DISPLAY } from '$env/static/private';
+
 	// @ts-nocheck
 
 	import ContentContainer from '$lib/components/contentContainer.svelte';
+	import WallpaperThumbnailCard from '$lib/components/wallpaperThumbnailCard.svelte';
 
 	import SourceStore from '$lib/stores/source';
 	// let url = "https://raw.githubusercontent.com/msm-linux/msm-wallpaper-index-source/main/index.json"
@@ -35,10 +38,10 @@
 					{urlStore.server_info}
 				</div>
 			</div>
-
-			<div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 py-6">
+			<!-- -->
+			<div class="py-6  sm:columns-2 lg:columns-3 xl:columns-4 ">
 				{#each Object.values(fetchedData) as item}
-					<img class="w-full" src={item.thumbnail_file_link} alt="" />
+					<WallpaperThumbnailCard thumbnail_url={item.thumbnail_file_link} thumbnail_name={item.filename} high_res_url={item.highres_link}/>
 				{/each}
 			</div>
 		</div>
