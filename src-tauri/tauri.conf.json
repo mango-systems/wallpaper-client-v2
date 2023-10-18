@@ -49,6 +49,22 @@
         "startDragging": true,
         "print": true
       },
+      "fs": {
+        "all": true,
+        "copyFile": false,
+        "createDir": false,
+        "exists": true,
+        "readDir": true,
+        "readFile": true,
+        "removeDir": false,
+        "removeFile": false,
+        "renameFile": false,
+        "scope": ["$RESOURCE/**"],
+        "writeFile": false
+      },
+      "path": {
+        "all": true
+      },
       "app" : {
         "all": false
       }
@@ -77,7 +93,9 @@
         "providerShortName": null,
         "signingIdentity": null
       },
-      "resources": [],
+      "resources": [
+        "resources/*"
+      ],
       "shortDescription": "",
       "targets": "all",
       "windows": {

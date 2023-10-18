@@ -28,7 +28,7 @@ export default {
         'AdwWindow': '8px'
       },
       height: {
-        'AdwTopBar' : '40px'
+        'AdwTopBar' : '45px'
       }
     },
   },

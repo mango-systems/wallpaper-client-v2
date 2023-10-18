@@ -9,64 +9,134 @@
 	import WindowMinimizeSymbolic from '$lib/AdwIcons/window-minimize-symbolic.svelte';
 	import WindowMaximizeSymbolic from '$lib/AdwIcons/window-maximize-symbolic.svelte';
 
+	import { resolveResource } from '@tauri-apps/api/path';
+	import { readTextFile } from '@tauri-apps/api/fs';
+
+	import SourceStore from '$lib/stores/source';
 	// https://svelte.dev/examples/onmount
 	// https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/named-colors.html
 
 	/** @type {string} */
 	let appName;
+	/**
+	/**
+	 * @type {any}
+	 */
+	let displayDescription;
+
+	/**
+	 * @type {any}
+	 */
+	let sources = getSources();
+
+	async function getSources() {
+		const sourcesFile = await resolveResource('resources/sources.json');
+		sources = JSON.parse(await readTextFile(sourcesFile));
+		console.debug(sources);
+		return sources;
+	}
 
 	onMount(async () => {
 		appName = await getName();
+
+		const inAppDataPath = await resolveResource('resources/inAppData.json');
+		// console.debug(inAppDataPath)
+		let inAppData = JSON.parse(await readTextFile(inAppDataPath));
+		displayDescription = inAppData.display_description;
 	});
+
+	/**
+	 * @type {{ url: any; }}
+	 */
+	 let urlStore;
+	SourceStore.subscribe((data) => {
+		urlStore = data;
+	});
+	// ######### IMPLEMENT STORE UPDATE ###################33
+
 </script>
 
 <div class="w-full h-full flex flex-row">
 	<div class="hidden md:block">
 		<div
 			id="sidebar"
-			class="h-full dark:bg-AdwBackgroundSidebarDark bg-AdwBackgroundSidebar w-[25%] md:max-w-[255px] lg:max-w-[270px] rounded-l-AdwWindow min-w-[240px] flex-grow px-3"
+			class="h-full dark:bg-AdwBackgroundSidebarDark bg-AdwBackgroundSidebar w-[25%] md:max-w-[255px] lg:max-w-[270px] rounded-l-AdwWindow min-w-[240px] flex-grow px-2"
 		>
-			<div id="topbar" class="w-full h-AdwTopBar" data-tauri-drag-region>
+			<div
+				id="topbar"
+				class="w-full h-AdwTopBar flex flex-row items-center justify-end"
+				data-tauri-drag-region
+			>
 				<IconButton>
 					<OpenMenuSymbolic />
 				</IconButton>
 			</div>
-			<h1 class="text-lg text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans">{appName}</h1>
+			<div class="px-3 pb-3">
+				<h1 class="text-lg text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans">
+					{appName}
+				</h1>
+				<p>{displayDescription}</p>
+			</div>
 			<!-- named slot: sidebar -->
+			<div>
+				<ul>
+					{#await sources}
+						<p>...waiting</p>
+					{:then sources}
+						{#each sources as source}
+							<li>
+								<a href="/{source.mode}">
+									<button class="w-full">
+										<div class="flex items-center hover:bg-[#cccccc] px-3 py-1 rounded-lg">
+											{source.title}
+										</div>
+									</button>
+								</a>
+							</li>
+						{/each}
+					{:catch error}
+						<p style="color: red">{error.message}</p>
+					{/await}
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div id="seperator" class="h-full py-1">
 		<div class="h-full w-[2px] bg-AdwBorder dark:bg-AdwBorderDark" />
 	</div>
 	<div id="main-area" class="w-full bg-AdwBackground dark:bg-AdwBackgroundDark rounded-r-AdwWindow">
-		<div id="topbar" class="w-full h-AdwTopBar flex flex-row">
-			<div class="flex-grow" data-tauri-drag-region />
-			<div id="windowButtons" class="flex flex-row gap-3 pt-2 pr-2" data-tauri-drag-region>
-				<WindowButton
-					windowButtonEvent={() => {
-						appWindow.minimize();
-					}}
-				>
-					<WindowMinimizeSymbolic />
-				</WindowButton>
-				<WindowButton
-					windowButtonEvent={() => {
-						appWindow.toggleMaximize();
-					}}
-				>
-					<WindowMaximizeSymbolic />
-				</WindowButton>
-				<WindowButton
-					windowButtonEvent={() => {
-						appWindow.close();
-					}}
-				>
-					<WindowCloseSymbolic />
-				</WindowButton>
+		<div class="flex flex-col">
+			<div id="topbar" class="w-full flex flex-row flex-grow-0 py-2">
+				<div class="flex-grow" data-tauri-drag-region />
+				<div id="windowButtons" class="flex flex-row gap-3 items-center pr-2" data-tauri-drag-region>
+					<WindowButton
+						windowButtonEvent={() => {
+							appWindow.minimize();
+						}}
+					>
+						<WindowMinimizeSymbolic />
+					</WindowButton>
+					<WindowButton
+						windowButtonEvent={() => {
+							appWindow.toggleMaximize();
+						}}
+					>
+						<WindowMaximizeSymbolic />
+					</WindowButton>
+					<WindowButton
+						windowButtonEvent={() => {
+							appWindow.close();
+						}}
+					>
+						<WindowCloseSymbolic />
+					</WindowButton>
+				</div>
+			</div>
+	
+			<!-- named slot: mainarea -->
+			<div class="w-full max-h-full overflow-hidden bg-red-300">
+				<slot />
 			</div>
 		</div>
-
-		<!-- named slot: mainarea -->
-		<slot />
 	</div>
 </div>
