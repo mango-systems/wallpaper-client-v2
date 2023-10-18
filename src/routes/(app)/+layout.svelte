@@ -58,12 +58,14 @@
 		/**
 		 * @type {any}
 		 */
-		let sourceUrl;
-		let serverTitle
+		let sourceButton = event.target;
+		let sourceUrl = event.currentTarget.getAttribute('data-source-url');
+		let serverTitle = event.currentTarget.getAttribute('data-server-name');
+		let serverInfo = event.currentTarget.getAttribute('data-server-info');
+		if (serverInfo === null || serverInfo === undefined) {
+			serverInfo = '';
+		}
 
-		const sourceButton = event.target;
-		sourceUrl = event.currentTarget.getAttribute('data-source-url');
-		serverTitle = event.currentTarget.getAttribute('data-server-name');
 		console.log(sourceUrl);
 		// SourceStore.update((currentValue) => {
 		// 	return { ...currentValue, location_url: sourceUrl };
@@ -71,7 +73,8 @@
 		// @ts-ignore
 		SourceStore.set({
 			location_url: sourceUrl,
-			server_name: serverTitle
+			server_name: serverTitle,
+			server_info: serverInfo,
 		});
 	}
 </script>

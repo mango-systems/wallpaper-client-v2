@@ -6,6 +6,11 @@
       "mode": "v1"
     },
     {
+      "title": "Server 1 copy",
+      "location_url": "https://raw.githubusercontent.com/msm-linux/msm-wallpaper-index-source/main/index.json",
+      "mode": "v1"
+    },
+    {
       "title": "MSM repo 2",
       "location_url": "https://www.example.com/event2-location",
       "description": "This is the description for Event 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
