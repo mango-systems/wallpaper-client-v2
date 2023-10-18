@@ -72,10 +72,10 @@
 				</IconButton>
 			</div>
 			<div class="px-3 pb-3">
-				<h1 class="text-lg text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans">
+				<h1 class="text-lg  leading-2 text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans font-bold">
 					{appName}
 				</h1>
-				<p>{displayDescription}</p>
+				<p class="text-base">{displayDescription}</p>
 			</div>
 			<!-- named slot: sidebar -->
 			<div>
@@ -134,7 +134,7 @@
 			</div>
 	
 			<!-- named slot: mainarea -->
-			<div class="w-full max-h-full overflow-y-auto bg-red-300">
+			<div class="w-full max-h-full overflow-y-auto">
 				<slot />
 			</div>
 		
