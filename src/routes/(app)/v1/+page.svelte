@@ -3,8 +3,6 @@
 
 	// @ts-nocheck
 
-	import { page } from '$app/stores';
-
 	import ContentContainer from '$lib/components/contentContainer.svelte';
 	import WallpaperThumbnailCard from '$lib/components/wallpaperThumbnailCard.svelte';
 
@@ -21,7 +19,7 @@
 		urlStore = data;
 	});
 
-	let fetchedData = null;
+	let fetchedData = "";
 
 	let fetchUrl = urlStore.location_url;
 	// const requestFetchUrl = fetch(fetchUrl).then((res) => res.json());

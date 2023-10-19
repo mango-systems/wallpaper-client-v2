@@ -21,6 +21,9 @@
 
 	import previewWindowStore from '$lib/stores/previewWindow';
 
+	/**
+	 * @type {{ isOpenWindow: any; selectedImgHighRes?: string; }}
+	 */
 	let previewWindow;
 	previewWindowStore.subscribe((data) => {
 		previewWindow = data;
@@ -75,6 +78,7 @@
 		console.log("EVENT: " + destinationURL)
 
 		let sourceButton = event.target;
+		// @ts-ignore
 		let sourceUrl = event.currentTarget.getAttribute('data-source-url');
 		let serverTitle = event.currentTarget.getAttribute('data-server-name');
 		let serverInfo = event.currentTarget.getAttribute('data-server-info');
@@ -93,16 +97,16 @@
 			server_info: serverInfo
 		});
 
-		let modeURL = destinationURL
-		// let modeURLwithParams = new URL(modeURL);
-		// modeURLwithParams.searchParams.set("foo", 4)
-		// console.log(modeURLwithParams)
-		// console.log(modeURLwithParams.href);
-		serverURL = encodeURIComponent(serverURL)
-		let modeURLwithParams = `${modeURL}?fetchurl=${serverURL}`;
-		// console.log("modeURL with params: "+ modeURLwithParams)
+		// let modeURL = destinationURL
+		// // let modeURLwithParams = new URL(modeURL);
+		// // modeURLwithParams.searchParams.set("foo", 4)
+		// // console.log(modeURLwithParams)
+		// // console.log(modeURLwithParams.href);
+		// serverURL = encodeURIComponent(serverURL)
+		// let modeURLwithParams = `${modeURL}?fetchurl=${serverURL}`;
+		// // console.log("modeURL with params: "+ modeURLwithParams)
 
-		goto(modeURLwithParams);
+		goto(destinationURL);
 	}
 </script>
 
