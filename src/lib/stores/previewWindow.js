@@ -5,6 +5,7 @@ const previewWindow = writable(
     {
         isOpenWindow: false,
         selectedImgHighRes: "",
+        selectedImgThumbnail: "",
     }
 )
 

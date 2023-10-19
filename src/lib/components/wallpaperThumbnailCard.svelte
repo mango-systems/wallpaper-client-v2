@@ -19,6 +19,7 @@
 		 */
 		let sourceButton = event.target;
 		let highResUrl = event.currentTarget.getAttribute('data-high-res-link');
+		let lowResUrl = event.currentTarget.getAttribute('data-low-res-link');
 		// let serverTitle = event.currentTarget.getAttribute('data-server-name');
 		// let serverInfo = event.currentTarget.getAttribute('data-server-info');
 		// if (serverInfo === null || serverInfo === undefined) {
@@ -30,6 +31,7 @@
 		// @ts-ignore
 		previewWindowStore.set({
 			selectedImgHighRes: highResUrl,
+			selectedImgThumbnail: lowResUrl,
             isOpenWindow: true
 		});
 	}
@@ -44,6 +46,7 @@
 		<img
 			class="w-full rounded-md saturate-50 hover:saturate-100 duration-500"
 			data-high-res-link={high_res_url}
+			data-low-res-link={thumbnail_url}
 			src={thumbnail_url}
 			alt={thumbnail_name}
 			loading="lazy"

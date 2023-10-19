@@ -11,7 +11,6 @@
 	import WindowMinimizeSymbolic from '$lib/AdwIcons/window-minimize-symbolic.svelte';
 	import WindowMaximizeSymbolic from '$lib/AdwIcons/window-maximize-symbolic.svelte';
 
-	import fetchDefaultWallpaper from '$lib/logic/fetchwallpaper'
 
 	import { goto } from '$app/navigation';
 
@@ -26,6 +25,7 @@
 	import previewWindowStore from '$lib/stores/previewWindow';
 
 	import appIcon from "$lib/images/app-icon.png"
+	import Monitor from '$lib/components/monitor.svelte';
 
 	/**
 	 * @type {{ isOpenWindow: any; selectedImgHighRes?: string; }}
@@ -65,7 +65,6 @@
 		let inAppData = JSON.parse(await readTextFile(inAppDataPath));
 		displayDescription = inAppData.display_description;
 
-		fetchDefaultWallpaper()
 	});
 
 	/**
@@ -141,7 +140,7 @@
 
 				<div>
 					<div>
-						<img src={appIcon} alt="app-icon">
+						<Monitor thumbnail_url={previewWindow.selectedImgThumbnail} />
 					</div>
 					<h1
 					class="text-lg leading-2 text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans font-bold"
