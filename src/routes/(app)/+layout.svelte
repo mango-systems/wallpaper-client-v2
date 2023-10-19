@@ -162,7 +162,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="seperator" class="h-full py-1">
+	<div id="seperator" class="dark:hidden h-full py-1">
 		<div class="h-full w-[2px] bg-AdwBorder dark:bg-AdwBorderDark" />
 	</div>
 	<div
