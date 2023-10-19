@@ -8,6 +8,9 @@ import { invoke } from '@tauri-apps/api/tauri'
 const downloadFolderName = 'PaperClient-Downloads';
 const downloadDirPath = await downloadDir();
 
+/**
+ * @param {string} link
+ */
 function extractFilenameFromLink(link) {
     const path = link.split('/').pop(); // Extract the last part of the URL
     // @ts-ignore
@@ -73,6 +76,9 @@ function extractFilenameFromLink(link) {
 //         }
 //     }
 
+/**
+ * @param {import("undici-types").RequestInfo} high_res_url
+ */
 export default async function downloadImage(high_res_url) {
     const filename = extractFilenameFromLink(high_res_url);
   
@@ -81,7 +87,7 @@ export default async function downloadImage(high_res_url) {
     console.log("filename:" + filename);
   
     try {
-      const permissionGranted = await isPermissionGranted();
+      let permissionGranted = await isPermissionGranted();
       if (!permissionGranted) {
         const permission = await requestPermission();
         permissionGranted = permission === 'granted';
@@ -144,8 +150,12 @@ export default async function downloadImage(high_res_url) {
 
 
 
+  /**
+ * @param {import("undici-types").RequestInfo} high_res_url
+ */
   export async function setWallpaper(high_res_url) {
     try {
+      // @ts-ignore
       const filename = extractFilenameFromLink(high_res_url);
   
       console.log("running file location");

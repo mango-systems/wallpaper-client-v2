@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import { onMount } from 'svelte';
 	import { getName } from '@tauri-apps/api/app';
 	import { appWindow } from '@tauri-apps/api/window';
