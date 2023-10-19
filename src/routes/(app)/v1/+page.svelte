@@ -21,7 +21,7 @@
 		urlStore = data;
 	});
 
-	let fetchedData = '';
+	let fetchedData = null;
 
 	let fetchUrl = urlStore.location_url;
 	// const requestFetchUrl = fetch(fetchUrl).then((res) => res.json());
@@ -48,7 +48,7 @@
 </script>
 
 <ContentContainer>
-	{#if fetchedData === ''}
+	{#if !fetchedData}
 		<div class="w-full h-full flex items-center justify-center">
 			<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
 				><style>

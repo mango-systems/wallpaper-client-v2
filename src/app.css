@@ -14,4 +14,55 @@ html{
 
 * {
   /* outline: 2px #00000060 solid; */
+  scrollbar-width: auto;
+  scrollbar-color: #575757 #3d3d3d;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+
+
+
+*::-webkit-scrollbar-track {
+  background: #0000001e;
+  border-radius: 2px
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a1a1a1;
+  border-radius: 10px;
+  border: 0px;
+  min-height: 25px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  padding: 10px;
+  background-color: #6d6d6d;
+}
+
+/* For dark mode */
+@media (prefers-color-scheme: dark) {
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff0e; /* Light background color */
+    border-radius: 2px,
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #333333; /* Light thumb color */
+    border-radius: 10px;
+    border: 0px;
+    min-height: 25px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    padding: 10px;
+    background-color: #555555; /* Light hover color */
+  }
 }
