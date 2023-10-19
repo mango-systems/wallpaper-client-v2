@@ -55,7 +55,7 @@
 					>Set background</button>
 				</div>
 				<div class=" flex items-center">
-					<button class="duration-100 dark:hover:bg-[#c4c4c4] hover:bg-neutral-700 rounded font-bold aspect-square h-full flex items-center justify-center" on:click={runDownloadImage(previewWindow.selectedImgHighRes)}>
+					<button class="duration-100 hover:bg-[#c4c4c4] dark:hover:bg-neutral-700 rounded font-bold aspect-square h-full flex items-center justify-center" on:click={runDownloadImage(previewWindow.selectedImgHighRes)}>
 						
 							<div class="w-6 fill-neutral-700 dark:fill-neutral-200"><DownloadSimple /></div>
 						

@@ -2,12 +2,12 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 #[tauri::command]
-fn set_wallpaper(wallpaperPath: String) {
+fn set_wallpaper(wallpaper_path: String) {
   // println!("I was invoked from JS! SET WALLPAPER");
   // println!("{:?}", wallpaper::get());
   // println!("I was invoked from JS, with this message: {}", wallpaperPath);
   println!("{:?}", wallpaper::get());
-  wallpaper::set_from_path(&wallpaperPath).unwrap();
+  wallpaper::set_from_path(&wallpaper_path).unwrap();
   wallpaper::set_mode(wallpaper::Mode::Crop).unwrap();
 }
 

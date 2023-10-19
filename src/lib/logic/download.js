@@ -173,10 +173,10 @@ export async function setWallpaper(high_res_url) {
 			.then((downloadResult) => {
 				if (downloadResult) {
 					// Image was downloaded, now set the wallpaper
-					return invoke('set_wallpaper', { wallpaperPath: fileLocation });
+					return invoke('set_wallpaper', { wallpaper_path: fileLocation });
 				} else {
 					// Image was already downloaded, proceed with setting the wallpaper
-					return invoke('set_wallpaper', { wallpaperPath: fileLocation });
+					return invoke('set_wallpaper', { wallpaper_path: fileLocation });
 					// console.log("error: unable to set wallpaper, no promise returned from downloadImage function")
 				}
 			})
