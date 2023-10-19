@@ -59,8 +59,11 @@
         "removeDir": false,
         "removeFile": false,
         "renameFile": false,
-        "scope": ["$RESOURCE/**"],
-        "writeFile": false
+        "scope": ["$RESOURCE/**", "$DOWNLOAD/**"],
+        "writeFile": true
+      },
+      "notification": {
+        "all": true
       },
       "path": {
         "all": true

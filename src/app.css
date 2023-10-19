@@ -8,6 +8,10 @@ body {
   padding: 0;
 }
 
+html{
+  overflow: hidden;
+}
+
 * {
   /* outline: 2px #00000060 solid; */
 }

@@ -9,6 +9,8 @@
 	import WindowMinimizeSymbolic from '$lib/AdwIcons/window-minimize-symbolic.svelte';
 	import WindowMaximizeSymbolic from '$lib/AdwIcons/window-maximize-symbolic.svelte';
 
+	import { goto } from '$app/navigation';
+
 	import { resolveResource } from '@tauri-apps/api/path';
 	import { readTextFile } from '@tauri-apps/api/fs';
 
@@ -64,10 +66,14 @@
 	});
 	// ######### IMPLEMENT STORE UPDATE ###################
 
-	function setLocationUrl(event) {
+	function setLocationUrl(destinationURL, serverURL) {
 		/**
 		 * @type {any}
 		 */
+		// @ts-ignore
+
+		console.log("EVENT: " + destinationURL)
+
 		let sourceButton = event.target;
 		let sourceUrl = event.currentTarget.getAttribute('data-source-url');
 		let serverTitle = event.currentTarget.getAttribute('data-server-name');
@@ -76,7 +82,7 @@
 			serverInfo = '';
 		}
 
-		console.log(sourceUrl);
+		// console.log(sourceUrl);
 		// SourceStore.update((currentValue) => {
 		// 	return { ...currentValue, location_url: sourceUrl };
 		// });
@@ -86,6 +92,17 @@
 			server_name: serverTitle,
 			server_info: serverInfo
 		});
+
+		let modeURL = destinationURL
+		// let modeURLwithParams = new URL(modeURL);
+		// modeURLwithParams.searchParams.set("foo", 4)
+		// console.log(modeURLwithParams)
+		// console.log(modeURLwithParams.href);
+		serverURL = encodeURIComponent(serverURL)
+		let modeURLwithParams = `${modeURL}?fetchurl=${serverURL}`;
+		// console.log("modeURL with params: "+ modeURLwithParams)
+
+		goto(modeURLwithParams);
 	}
 </script>
 
@@ -97,7 +114,7 @@
 	<div class="hidden md:block">
 		<div
 			id="sidebar"
-			class="h-full dark:bg-AdwBackgroundSidebarDark bg-AdwBackgroundSidebar w-[25%] md:max-w-[255px] lg:max-w-[270px] rounded-l-AdwWindow min-w-[240px] flex-grow px-2"
+			class=" h-full dark:bg-AdwBackgroundSidebarDark bg-AdwBackgroundSidebar w-[25%] md:max-w-[255px] lg:max-w-[270px] rounded-l-AdwWindow min-w-[240px] flex-grow px-2"
 		>
 			<div
 				id="topbar"
@@ -117,10 +134,10 @@
 				<p class="text-base">{displayDescription}</p>
 			</div>
 			<!-- named slot: sidebar -->
-			<div>
+			<div class="text-neutral-950 dark:text-neutral-100">
 				<ul>
 					{#await sources}
-						<p>...waiting</p>
+						<p>Loading...</p>
 					{:then sources}
 						{#each sources as source}
 							<li>
@@ -129,13 +146,12 @@
 									data-source-url={source.location_url}
 									data-server-name={source.title}
 									data-server-info={source.description}
-									on:click={setLocationUrl}
+									on:click={() => setLocationUrl(source.mode, source.location_url)}
 								>
-									<a href="/{source.mode}">
-										<div class="flex items-center hover:bg-[#cccccc] px-3 py-1 rounded-lg">
+									
+										<div class="flex items-center hover:bg-[#cccccc] dark:hover:bg-neutral-700 px-3 py-2 rounded-lg">
 											{source.title}
 										</div>
-									</a>
 								</button>
 							</li>
 						{/each}
