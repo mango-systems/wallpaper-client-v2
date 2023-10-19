@@ -2,25 +2,13 @@
     {
       "title": "MSM Github Wallpapers",
       "location_url": "https://raw.githubusercontent.com/msm-linux/msm-wallpaper-index-source/main/index.json",
-      "description": "This is the description for Event 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "description": "Pulling Wallpapers from Github, msm-linux/msm-wallpaper-index-source",
       "mode": "v1"
     },
     {
       "title": "Catpuccin Cassete",
       "location_url": "https://raw.githubusercontent.com/MSM74588/msm-catpuccin-cassete-wallpaper-source/main/index.json",
       "mode": "v1"
-    },
-    {
-      "title": "MSM repo 2",
-      "location_url": "https://www.example.com/event2-location",
-      "description": "This is the description for Event 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "mode": "v2"
-    },
-    {
-      "title": "test repo 3",
-      "location_url": "https://www.example.com/event3-location",
-      "description": "This is the description for Event 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "mode": "v2"
     }
   ]
   
