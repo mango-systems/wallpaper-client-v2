@@ -23,6 +23,8 @@
 
 	import previewWindowStore from '$lib/stores/previewWindow';
 
+	import appIcon from "$lib/images/app-icon.png"
+
 	/**
 	 * @type {{ isOpenWindow: any; selectedImgHighRes?: string; }}
 	 */
@@ -132,12 +134,18 @@
 				</IconButton>
 			</div>
 			<div class="px-3 pb-3">
-				<h1
+
+				<div>
+					<div>
+						<img src={appIcon} alt="app-icon">
+					</div>
+					<h1
 					class="text-lg leading-2 text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans font-bold"
 				>
 					{appName}
 				</h1>
 				<p class="text-base">{displayDescription}</p>
+				</div>
 			</div>
 			<!-- named slot: sidebar -->
 			<div class="text-neutral-950 dark:text-neutral-100">

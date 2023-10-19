@@ -6,6 +6,7 @@ fn set_wallpaper(wallpaperPath: String) {
   // println!("I was invoked from JS! SET WALLPAPER");
   // println!("{:?}", wallpaper::get());
   // println!("I was invoked from JS, with this message: {}", wallpaperPath);
+  println!("{:?}", wallpaper::get());
   wallpaper::set_from_path(&wallpaperPath).unwrap();
   wallpaper::set_mode(wallpaper::Mode::Crop).unwrap();
 }
