@@ -122,8 +122,8 @@
         "title": "PaperClient",
         "width": 800,
         "decorations": false,
-        "transparent": true,
-        "theme" : "Light"
+        "transparent": true
+
       }
     ]
   }
