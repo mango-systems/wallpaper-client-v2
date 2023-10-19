@@ -11,6 +11,8 @@
 	import WindowMinimizeSymbolic from '$lib/AdwIcons/window-minimize-symbolic.svelte';
 	import WindowMaximizeSymbolic from '$lib/AdwIcons/window-maximize-symbolic.svelte';
 
+	import fetchDefaultWallpaper from '$lib/logic/fetchwallpaper'
+
 	import { goto } from '$app/navigation';
 
 	import { resolveResource } from '@tauri-apps/api/path';
@@ -62,6 +64,8 @@
 		// console.debug(inAppDataPath)
 		let inAppData = JSON.parse(await readTextFile(inAppDataPath));
 		displayDescription = inAppData.display_description;
+
+		fetchDefaultWallpaper()
 	});
 
 	/**
