@@ -32,7 +32,7 @@
 	});
 </script>
 
-<div class="items-center relative pb-48 hover:scale-105 duration-1000">
+<div class="items-center relative pb-48 hover:scale-105 duration-200 ease-in-out">
 	<div class="absolute">
 		<div class="flex items-center justify-center bg-black rounded-md screen ">
 			{#if savedValue.thumbnail_url_saved}
