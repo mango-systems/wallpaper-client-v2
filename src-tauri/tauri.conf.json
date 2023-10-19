@@ -87,8 +87,8 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
-      "longDescription": "",
+      "identifier": "github.paperclient.msm74588",
+      "longDescription": "Wallpaper manager to Download from different sources",
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -99,7 +99,7 @@
       "resources": [
         "resources/*"
       ],
-      "shortDescription": "",
+      "shortDescription": "Wallpaper Manager",
       "targets": "all",
       "windows": {
         "certificateThumbprint": null,
