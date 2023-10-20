@@ -1,30 +1,37 @@
-# 📄 PaperClient
+<h1 aligh=center>📄 PaperClient</h1>
 
-## About
+<p align="center">Built on Tauri and Sveltekit</p>
 
-Bluit on Tauri and Sveltekit
+<p align="center">
+<img width="70%" src="https://github.com/mango-systems/wallpaper-client-v2/assets/48552989/5721ab88-83ca-403c-9efb-46468fba7f3f">
+</p>
+
+<p align="center"><img src="https://img.shields.io/badge/tauri-%2324C8DB.svg?style=for-the-badge&amp;logo=tauri&amp;logoColor=%23FFFFFF" alt="shields"><img src="https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&amp;logo=svelte&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&amp;logo=rust&amp;logoColor=white" alt="shields"></p>
 
 
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+# Developing
+Once created install dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm run tauri dev
 ```
 
 ## Building
 
-To create a production version of your app:
+To create a production version of the app:
 
 ```bash
-npm run build
+npm run tauri buil
 ```
 
-You can preview the production build with `npm run preview`.
+Outputs in `/src-tauri/target/release`.
+Bundles can be found in `/src-tauri/target/release/bundle`
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+# To-do:
+- [ ] About window
+- [ ] KDE
+
+# Tested Platforms:
+- Windows 10
+- GNOME Ubuntu (Unity)
