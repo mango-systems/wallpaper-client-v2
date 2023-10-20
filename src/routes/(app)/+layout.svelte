@@ -24,7 +24,6 @@
 
 	import previewWindowStore from '$lib/stores/previewWindow';
 
-	import appIcon from "$lib/images/app-icon.png"
 	import Monitor from '$lib/components/monitor.svelte';
 
 	/**

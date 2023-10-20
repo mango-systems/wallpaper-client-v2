@@ -1,6 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use detect_desktop_environment::DesktopEnvironment;
+
 // use std::process::{Command, ExitStatus};
 // use std::fs;
 // use std::path::Path;
@@ -144,22 +145,67 @@ use detect_desktop_environment::DesktopEnvironment;
 // }
 // }
 
-#[tauri::command(rename_all = "snake_case")]
-fn detect_desktop_environment() -> String {
-    let hello = "Hello, World!";
-    println!("{}", hello);
-    hello.into()
-}
+// #[tauri::command(rename_all = "snake_case")]
+// fn set_wallpaper_by_crate(wallpaper_file_path: String){
+//     wallpaper::set_from_path(&wallpaper_file_path).unwrap();
+//     wallpaper::set_mode(wallpaper::Mode::Crop).unwrap();
+// }
+
+// #[tauri::command(rename_all = "snake_case")]
+// fn detectDE() -> String {
+
+//     let hello = "Hello, World!";
+//     println!("{}", hello);
+    
+//     match DesktopEnvironment::detect() {
+//                 println!{"{}", de}
+//                 Some(de) => {
+//                     match de {
+//                         DesktopEnvironment::Unity => {
+//                             // Handle the Unity case.
+//                             // Your Unity-specific code here.
+//                             println!("detected desktop environment: Unity");
+                             
+//                         },
+//                         DesktopEnvironment::Gnome => {
+//                             println!("detected desktop environment: GNOME");
+//                         },
+//                         _ => {
+//                             // If it's not Unity, move to the else block.
+//                             println!("detected desktop environment: Unknown");
+//                         }
+//                     }
+//                 },
+//                 None => println!("failed to detect desktop environment"),
+//             }
+//     hello.into()
+// }
 
 #[tauri::command(rename_all = "snake_case")]
-fn set_wallpaper_by_crate(wallpaper_file_path: String){
+fn set_wallpaper_by_crate(wallpaper_file_path: String) {
     wallpaper::set_from_path(&wallpaper_file_path).unwrap();
     wallpaper::set_mode(wallpaper::Mode::Crop).unwrap();
 }
 
+#[tauri::command(rename_all = "snake_case")]
+fn detect_de() -> String {
+    match DesktopEnvironment::detect() {
+        Some(de) => {
+            let result = match de {
+                DesktopEnvironment::Unity => "Unity",
+                DesktopEnvironment::Gnome => "GNOME",
+                _ => "Unknown",
+            };
+            result.to_string()
+        },
+        None => "failed to detect desktop environment".to_string(),
+    }
+}
+
+
 fn main() {
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![set_wallpaper_by_crate, detect_desktop_environment])
+    .invoke_handler(tauri::generate_handler![set_wallpaper_by_crate, detect_de])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

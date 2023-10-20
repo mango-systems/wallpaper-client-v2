@@ -49,6 +49,19 @@
         "startDragging": true,
         "print": true
       },
+      "shell": {
+        "all": false,
+        "execute": true,
+        "open": true,
+        "scope": [
+          {
+            "name": "set-gnome-wallpaper",
+            "cmd": "gsettings",
+            "args": ["set", "org.gnome.desktop.background", { "validator": "\\S+" }, { "validator": "\\S+" }]
+          }
+        ],
+        "sidecar": false
+      },
       "fs": {
         "all": true,
         "copyFile": false,
