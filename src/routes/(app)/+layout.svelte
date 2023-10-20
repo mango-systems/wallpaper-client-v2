@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
 	import { onMount } from 'svelte';
 	import { getName } from '@tauri-apps/api/app';
@@ -10,7 +10,6 @@
 	import WindowButton from '$lib/components/windowButton.svelte';
 	import WindowMinimizeSymbolic from '$lib/AdwIcons/window-minimize-symbolic.svelte';
 	import WindowMaximizeSymbolic from '$lib/AdwIcons/window-maximize-symbolic.svelte';
-
 
 	import { goto } from '$app/navigation';
 
@@ -25,6 +24,10 @@
 	import previewWindowStore from '$lib/stores/previewWindow';
 
 	import Monitor from '$lib/components/monitor.svelte';
+	// import OpenConfig from '$lib/components/openDownloads.svelte';
+	import OpenDownloads from '$lib/components/openDownloads.svelte';
+	import OpenConfig from '$lib/components/openConfig.svelte';
+
 
 	/**
 	 * @type {{ isOpenWindow: any; selectedImgHighRes?: string; }}
@@ -43,6 +46,7 @@
 	 * @type {any}
 	 */
 	let displayDescription;
+	let defined_download_folder
 
 	/**
 	 * @type {any}
@@ -63,7 +67,7 @@
 		// console.debug(inAppDataPath)
 		let inAppData = JSON.parse(await readTextFile(inAppDataPath));
 		displayDescription = inAppData.display_description;
-
+		defined_download_folder = inAppData.download_folder;
 	});
 
 	/**
@@ -81,7 +85,7 @@
 		 */
 		// @ts-ignore
 
-		console.log("EVENT: " + destinationURL)
+		console.log('EVENT: ' + destinationURL);
 
 		let sourceButton = event.target;
 		// @ts-ignore
@@ -124,58 +128,67 @@
 	<div class="hidden md:block">
 		<div
 			id="sidebar"
-			class=" h-full dark:bg-AdwBackgroundSidebarDark bg-AdwBackgroundSidebar w-[25%] md:max-w-[255px] lg:max-w-[270px] rounded-l-AdwWindow min-w-[240px] flex-grow px-2"
+			class=" h-full dark:bg-AdwBackgroundSidebarDark bg-AdwBackgroundSidebar w-[25%] md:max-w-[255px] lg:max-w-[270px] rounded-l-AdwWindow min-w-[240px] flex-grow px-2 flex flex-col"
 		>
 			<div
 				id="topbar"
-				class="w-full h-AdwTopBar flex flex-row items-center justify-end"
+				class="w-full h-AdwTopBar flex flex-row items-center justify-end "
 				data-tauri-drag-region
 			>
 				<IconButton>
 					<OpenMenuSymbolic />
 				</IconButton>
 			</div>
-			<div class="px-3 pb-3">
-
-				<div>
+			<div class="flex-grow overflow-y-auto">
+				<div id="brandingSpace" class="px-3 pb-3 ">
 					<div>
-						<Monitor thumbnail_url={previewWindow.selectedImgThumbnail} />
+						<div>
+							<Monitor thumbnail_url={previewWindow.selectedImgThumbnail} />
+						</div>
+						<h1
+							class="text-lg leading-2 text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans font-bold"
+						>
+							{appName}
+						</h1>
+						<p class="text-base">{displayDescription}</p>
 					</div>
-					<h1
-					class="text-lg leading-2 text-AdwTextPrimary dark:text-AdwTextPrimaryDark font-sans font-bold"
-				>
-					{appName}
-				</h1>
-				<p class="text-base">{displayDescription}</p>
 				</div>
-			</div>
-			<!-- named slot: sidebar -->
-			<div class="text-neutral-950 dark:text-neutral-100">
-				<ul>
-					{#await sources}
-						<p>Loading...</p>
-					{:then sources}
-						{#each sources as source}
-							<li>
-								<button
-									class="w-full"
-									data-source-url={source.location_url}
-									data-server-name={source.title}
-									data-server-info={source.description}
-									on:click={() => setLocationUrl(source.mode, source.location_url)}
-								>
-									
-										<div class="flex items-center hover:bg-[#cccccc] dark:hover:bg-neutral-700 px-3 py-2 rounded-lg">
+				<!-- named slot: sidebar -->
+				<div class="text-neutral-950 dark:text-neutral-100 ">
+					<ul>
+						{#await sources}
+							<p>Loading...</p>
+						{:then sources}
+							{#each sources as source}
+								<li>
+									<button
+										class="w-full"
+										data-source-url={source.location_url}
+										data-server-name={source.title}
+										data-server-info={source.description}
+										on:click={() => setLocationUrl(source.mode, source.location_url)}
+									>
+										<div
+											class="flex items-center hover:bg-[#cccccc] dark:hover:bg-neutral-700 px-3 py-2 rounded-md"
+										>
 											{source.title}
 										</div>
-								</button>
-							</li>
-						{/each}
-					{:catch error}
-						<p style="color: red">{error.message}</p>
-					{/await}
-				</ul>
-			</div>
+									</button>
+								</li>
+							{/each}
+						{:catch error}
+							<p style="color: red">{error.message}</p>
+						{/await}
+					</ul>
+				</div>
+				
+				</div>
+				<div id="utilityButtons" class="justify-self-end pb-2">
+						<div class="flex flex-row gap-2">
+							<OpenDownloads folder={defined_download_folder}/>
+							<OpenConfig />
+						</div>
+				</div>
 		</div>
 	</div>
 	<div id="seperator" class="dark:hidden h-full py-1">

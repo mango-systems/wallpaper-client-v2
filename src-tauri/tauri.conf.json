@@ -51,8 +51,9 @@
       },
       "shell": {
         "all": false,
+
         "execute": true,
-        "open": true,
+        "open": "^",
         "scope": [
           {
             "name": "set-gnome-wallpaper",
@@ -62,6 +63,7 @@
         ],
         "sidecar": false
       },
+      
       "fs": {
         "all": true,
         "copyFile": false,

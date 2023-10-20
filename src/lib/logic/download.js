@@ -6,8 +6,20 @@ import {
 	sendNotification
 } from '@tauri-apps/api/notification';
 
+	import { resolveResource } from '@tauri-apps/api/path';
+	import { readTextFile } from '@tauri-apps/api/fs';
 
-const downloadFolderName = 'PaperClient-Downloads';
+// const downloadFolderName = 'PaperClient-Downloads';
+// async function fetchDownloadFolderName(){
+// 	const inAppDataPath = await resolveResource('resources/inAppData.json');
+// 	let inAppData = JSON.parse(await readTextFile(inAppDataPath));
+// 	let download_folder = inAppData.download_folder
+// 	return download_folder;
+// }
+
+// let downloadFolderName = fetchDownloadFolderName()
+
+
 
 // await downloadDir();
 
@@ -84,6 +96,11 @@ function extractFilenameFromLink(link) {
  * @param {import("undici-types").RequestInfo} high_res_url
  */
 export default async function downloadImage(high_res_url) {
+	const inAppDataPath = await resolveResource('resources/inAppData.json');
+	let inAppData = JSON.parse(await readTextFile(inAppDataPath));
+	let downloadFolderName = inAppData.download_folder
+
+
 	const downloadDirPath = await downloadDir();
 
 	const filename = extractFilenameFromLink(high_res_url);
@@ -162,6 +179,10 @@ export default async function downloadImage(high_res_url) {
  * @param {import("undici-types").RequestInfo} high_res_url
  */
 export async function setWallpaper(high_res_url) {
+	const inAppDataPath = await resolveResource('resources/inAppData.json');
+	let inAppData = JSON.parse(await readTextFile(inAppDataPath));
+	let downloadFolderName = inAppData.download_folder
+	
 	try {
 		// @ts-ignore
 		const filename = extractFilenameFromLink(high_res_url);

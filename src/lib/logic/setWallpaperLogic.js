@@ -1,7 +1,5 @@
 import { invoke } from '@tauri-apps/api/tauri';
-
 import { platform } from '@tauri-apps/api/os';
-
 import { Command } from '@tauri-apps/api/shell'
 
 /**
