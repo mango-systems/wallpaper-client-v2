@@ -6,10 +6,12 @@ import {
 	sendNotification
 } from '@tauri-apps/api/notification';
 
-import { invoke } from '@tauri-apps/api/tauri';
 
 const downloadFolderName = 'PaperClient-Downloads';
+
 // await downloadDir();
+
+import setWallpaperLogic from '$lib/logic/setWallpaperLogic'
 
 /**
  * @param {string} link
@@ -163,7 +165,7 @@ export async function setWallpaper(high_res_url) {
 	try {
 		// @ts-ignore
 		const filename = extractFilenameFromLink(high_res_url);
-    const downloadDirPath = await downloadDir();
+		const downloadDirPath = await downloadDir();
 
 		console.log('running file location');
 		const fileLocation = await join(downloadDirPath, downloadFolderName, filename);
@@ -172,11 +174,12 @@ export async function setWallpaper(high_res_url) {
 		await downloadImage(high_res_url)
 			.then((downloadResult) => {
 				if (downloadResult) {
+					// setWallpaperViaCrate(fileLocation)
 					// Image was downloaded, now set the wallpaper
-					return invoke('set_wallpaper', { wallpaper_path: fileLocation });
+					return setWallpaperLogic(fileLocation)
 				} else {
 					// Image was already downloaded, proceed with setting the wallpaper
-					return invoke('set_wallpaper', { wallpaper_path: fileLocation });
+					return setWallpaperLogic(fileLocation)
 					// console.log("error: unable to set wallpaper, no promise returned from downloadImage function")
 				}
 			})
