@@ -22,7 +22,7 @@ npm run tauri dev
 To create a production version of the app:
 
 ```bash
-npm run tauri buil
+npm run tauri build
 ```
 
 Outputs in `/src-tauri/target/release`.
@@ -31,6 +31,9 @@ Bundles can be found in `/src-tauri/target/release/bundle`
 # To-do:
 - [ ] About window
 - [ ] KDE
+
+# Known Issue:
+- not working on gnome, since Rust code is running as root it is unable to detect the DE of the user, thus unable to return DE information and running the setting-wallpaper-by-crate function in logic
 
 # Tested Platforms:
 - Windows 10
