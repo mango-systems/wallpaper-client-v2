@@ -1,5 +1,12 @@
 <script>
     import "../app.css";
+
+    import startup from '$lib/logic/startup'
+	import { onMount } from "svelte";
+
+    onMount(async () => {
+      startup()
+    })
 </script>
 
 <div class="w-screen h-screen dark:text-neutral-50 text-neutral-900">
