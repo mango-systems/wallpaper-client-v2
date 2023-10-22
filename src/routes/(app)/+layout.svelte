@@ -132,7 +132,7 @@
 		>
 			<div
 				id="topbar"
-				class="w-full h-AdwTopBar flex flex-row items-center justify-end "
+				class="w-full h-AdwTopBar flex flex-row items-center justify-end topbar"
 				data-tauri-drag-region
 			>
 				<IconButton>
@@ -140,7 +140,7 @@
 				</IconButton>
 			</div>
 			<div class="flex-grow overflow-y-auto">
-				<div id="brandingSpace" class="px-3 pb-3 ">
+				<div id="brandingSpace" class="pt-2 px-3 pb-3">
 					<div>
 						<div>
 							<Monitor thumbnail_url={previewWindow.selectedImgThumbnail} />
@@ -231,3 +231,5 @@
 		</div>
 	</div>
 </div>
+
+
