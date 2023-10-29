@@ -31,6 +31,11 @@ Bundles can be found in `/src-tauri/target/release/bundle`
 # To-do:
 - [ ] About window
 - [ ] KDE
+- [ ] Edit images, crop, contrast, brightness (note: save edited files to different folder in appdata/appfoleder)
+- [ ] Add Logging to file capabilities, with time stamps. 
+- [ ] Fix loding screen to show error when not connected to internet.
+- [ ] Mode to set wallpaper (crop, stretch, tile, center)
+- [ ] Add local file handling.
 
 # Known Issue:
 - not working on gnome, since Rust code is running as root it is unable to detect the DE of the user, thus unable to return DE information and running the setting-wallpaper-by-crate function in logic
