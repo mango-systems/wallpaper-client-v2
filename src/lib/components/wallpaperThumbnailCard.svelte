@@ -8,6 +8,8 @@
 	export let high_res_url;
 	import previewWindowStore from '$lib/stores/previewWindow';
 
+	import { fade } from 'svelte/transition';
+
 	let previewWindow;
 	previewWindowStore.subscribe((data) => {
 		previewWindow = data;
@@ -38,7 +40,7 @@
 </script>
 
 <div class="pt-4">
-	<div
+	<div transition:fade
 		class=" rounded-md hover:outline outline-offset-2 outline-4 outline-none hover:outline-blue-600"
 	>
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
