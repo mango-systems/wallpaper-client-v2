@@ -1,0 +1,29 @@
+name: build tauri app
+on: workflow_dispatch
+jobs:
+    build-windows-executable:
+        runs-on: windows-latest
+        steps:
+            - name: clone git repo
+              uses: actions/checkout@v4
+
+            - name: setup Node
+              uses: actions/setup-node@v4
+              with:
+                node-version: latest
+
+            - name: install Rust stable
+              uses: dtolnay/rust-toolchain@stable
+
+            - name: install frontend dependencies
+              run: npm install 
+            
+            - uses: tauri-apps/tauri-action@v0
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+                  releaseName: 'App v__VERSION__'
+                  releaseBody: 'See the assets to download this version and install.'
+                  releaseDraft: true
+                  prerelease: false
