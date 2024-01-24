@@ -6,6 +6,9 @@
 	import WindowCloseSymbolic from '$lib/AdwIcons/window-close-symbolic.svelte';
 	import DownloadSimple from '$lib/AdwIcons/download-simple.svelte';
 	import  downloadImage, { setWallpaper }  from '$lib/logic/download';
+	
+	import { fade , blur , scale } from 'svelte/transition';
+
 	/**
 	 * @type {{ selectedImgHighRes: any; isOpenWindow?: boolean; }}
 	 */
@@ -39,11 +42,11 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
+<div transition:fade
 	class="absolute w-full h-full bg-[#00000044] flex items-center justify-center z-50"
 	data-tauri-drag-region
 >
-	<div
+	<div transition:scale={{duration: 300}}
 		class="w-[50%] bg-AdwBackgroundPrimary dark:bg-AdwBackgroundSidebarDark max-w-[878px] min-w-[350px] drop-shadow-xl rounded-AdwWindow dark:border-[#585858c4] border-[#28292e5b] border-[1.5px]"
 	>
 		<div class="flex flex-row w-full dark:border-[#757575c4] border-[#28292e5b] border-b-[1.5px] items-center">
@@ -72,7 +75,7 @@
 				</WindowButton>
 			</div>
 		</div>
-		<div class="p-3">
+		<div class="p-3" transition:blur>
 			<img class="rounded-md dark:border-2 border-neutral-700" src={previewWindow.selectedImgHighRes} alt="" />
 		</div>
 	</div>

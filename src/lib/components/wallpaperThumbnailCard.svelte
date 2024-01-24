@@ -40,12 +40,12 @@
 </script>
 
 <div class="pt-4">
-	<div transition:fade
+	<div 
 		class=" rounded-md hover:outline outline-offset-2 outline-4 outline-none hover:outline-blue-600"
 	>
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-		<img
+		<img transition:fade
 			class="w-full rounded-md saturate-50 hover:saturate-100 duration-500"
 			data-high-res-link={high_res_url}
 			data-low-res-link={thumbnail_url}
